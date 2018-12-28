@@ -1,0 +1,72 @@
+{
+  "data": {
+    "appinfo": {
+      "phone": [
+        "01-4410077"
+      ],
+      "about-url": "https://order.dalbhatnepalikitchen.com/about-us",
+      "privacy-policy": "https://order.dalbhatnepalikitchen.com/privacy-policy",
+      "terms-condition": "https://order.dalbhatnepalikitchen.com/terms-condition",
+      "share_url": "https://appurl.io/je6qfqxt",
+      "share_text": "Install, Play & Win a Chance to Meet & Greet Salman",
+      "share_image": "https://order.dalbhatnepalikitchen.com/images/meet-greet-banner.jpg"
+    },
+    "banner": [
+      {
+        "id": 1,
+        "displayOrder": 1,
+        "image": "https://order.dalbhatnepalikitchen.com/images/daal-bhat-banner.jpg"
+      },
+      {
+        "id": 2,
+        "displayOrder": 2,
+        "image": "https://order.dalbhatnepalikitchen.com/images/meet-greet-banner.jpg"
+      },
+      {
+        "id": 3,
+        "displayOrder": 3,
+        "image": "https://order.dalbhatnepalikitchen.com/images/banner3.jpg"
+      }
+    ],
+    "menu": [
+      {
+        "id": 1,
+        "title": "VEG DALBHAT",
+        "price": "Rs 180",
+        "image": "https://order.dalbhatnepalikitchen.com/images/vegthali.jpg",
+        "displayOrder": 1
+      },
+      {
+        "id": 2,
+        "title": "CHICKEN DALBHAT",
+        "price": "Rs 250",
+        "image": "https://order.dalbhatnepalikitchen.com/images/muttonthali.jpg",
+        "displayOrder": 2
+      },
+      {
+        "id": 3,
+        "title": "LOCAL CHICKEN DALBHAT",
+        "price": "Rs 399",
+        "image": "https://order.dalbhatnepalikitchen.com/images/localchicken.jpg",
+        "displayOrder": 3
+      },
+      {
+        "id": 4,
+        "title": "MUTTON DALBHAT",
+        "price": "Rs 350",
+        "image": "https://order.dalbhatnepalikitchen.com/images/muttondalbhat.jpg",
+        "displayOrder": 4
+      },
+      {
+        "id": 5,
+        "title": "WILD BOAR DALBHAT",
+        "price": "Rs 350",
+        "image": "https://order.dalbhatnepalikitchen.com/images/bandeldalbhat.jpg",
+        "displayOrder": 5
+      }
+    ]
+  },
+  "messages": null,
+  "meta": null,
+  "pagination": null
+}

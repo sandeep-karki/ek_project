@@ -1,0 +1,108 @@
+@extends('layouts.system')
+@section('title', $pageTitle)
+
+@section('content')
+
+<div id="page-title">
+    <h2 style="display:inline-block">{{translate($pageTitle) }}</h2>
+    <div class="right" style="float:right">
+      <a class="btn btn-primary" href="{{URL::to(PREFIX.'/languages/create')}}"><i class="glyph-icon icon-plus" style="margin-right:10px;"></i>{{ translate('Add New') }}</a>
+    </div>
+</div>
+
+<div class="breadcrumb-section clearfix">
+  <ol class="breadcrumb">
+    <li><a href="{{URL::to(PREFIX.'/home')}}">{{ translate('Home') }}</a></li>
+    <li class="active">{{translate($pageTitle)}}</li>
+  </ol>
+</div>
+
+@include('errors.errors')
+
+<div class="panel">
+  <div class="panel-body">
+    {{-- {{ getLang(); }} --}}
+    <div class="example-box-wrapper">
+      <div class="scroll-columns">
+        <table class="table table-bordered table-striped table-condensed cf">
+          <thead class="cf">
+            <tr>
+                <th>{{ translate('S.N.') }}</th>
+                <th>{{ translate('Name') }}</th>
+                <th>{{ translate('Short Code') }}</th>
+                <th>{{ translate('Flag') }}</th>
+                <th>{{ translate('Action') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php if(Input::has('page')) $start = Input::get('page')*50-50;
+              else $start = 0;
+            ?>
+            @foreach($pageData as $pData)
+            <?php $start++ ?>
+            <tr>
+                <td>{{$start}}</td>
+                <td>{{$pData->name}}</td>
+                <td>{{$pData->short_code}}</td>
+                 <td>
+                    @if(!empty($pData->flag))
+                    <img src="{{URL::asset('/uploads/flag/'.$pData->flag)}}" height="">
+                    @else
+                    No Image
+                    @endif
+                </td>
+                <td>
+                  <a class="btn btn-sm btn-info btn_glyph"  href="{{URL::to(PREFIX.'/languages/'.$pData->id.'/edit')}}"><i class="glyphicon glyphicon-edit"></i> {{ translate('Edit') }}</a>
+                  @if($pData->short_code != 'eng')
+                  <a href="javascript:void(0)" data-toggle="modal" data-target="#confirm-delete" data-href="{{URL::to(PREFIX.'/languages/'.$pData->id)}}" class="btn btn-sm btn-danger"><i class="glyph-icon icon-trash"></i> {{translate('Delete')}}</a>
+                  @endif
+                  </a>
+                </td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    {!! str_replace('/?', '?',$pageData->appends(['keywords'=>Input::get('keywords')])->render()) !!}
+
+</div>
+</div>
+
+@include('system.shared.confirm-delete')
+@stop
+
+@section('scripts')
+
+<link rel="stylesheet" type="text/css" href="{{URL::asset('backend/widgets/input-switch/inputswitch.css')}}">
+
+<script type="text/javascript" src="{{URL::asset('backend/widgets/input-switch/inputswitch.js')}}"></script>
+<script type="text/javascript">
+/* Input switch */
+
+$(function() { "use strict";
+    $('.input-switch').bootstrapSwitch();
+    $('.status').on('switchChange.bootstrapSwitch', function (event, state) {
+        var id = $(this).data('id');
+        $.ajax
+            ({
+                url: "{{ URL::to(PREFIX.'/config/pages/language/active')}}?id="+id,
+                type: 'get',
+                success: function(result)
+                {
+                    $('#status_'+id).html(result);
+                },
+                error: function()
+                {
+                    $('#modalinfo div').html(' <div class="modal-content"><div class="modal-header"><h2>Could not complete the request.</h2></div></div>');
+                    $('#modalinfo').modal('show');
+                }
+            });
+    });
+});
+</script>
+
+@include('system.shared.toggle')
+
+@stop
